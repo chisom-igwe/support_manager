@@ -1,0 +1,31 @@
+{
+  "name": "support_manager",
+  "version": "1.0.0",
+  "description": "An application for managing support cases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chisom-igwe/support_manager.git"
+  },
+  "author": "Chisom Igwe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chisom-igwe/support_manager/issues"
+  },
+  "homepage": "https://github.com/chisom-igwe/support_manager#readme",
+  "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.14.12",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
+  }
+}
