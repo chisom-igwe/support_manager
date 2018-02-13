@@ -5,9 +5,9 @@ const jwtStrategy = require('passport-jwt').Strategy;
 const extractJwt = require('passport-jwt').ExtractJwt;
 
 const user = require('./../models/user');
-const config = require('../config/config');
+const config = require('./../config');
 
-module.exports.hookJwtstrategy(passport){
+function hookJwtStrategy(passport){
 	var options = {};
     
     options.secretOrKey = config.keys.secret;
@@ -26,3 +26,6 @@ module.exports.hookJwtstrategy(passport){
             }); 
      }));
 }
+
+
+module.exports = hookJwtStrategy; 

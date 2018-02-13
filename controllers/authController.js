@@ -32,16 +32,16 @@ authController.signUp = function(req, res){
 
 
 //authenticate a user 
-
 authController.authenticateUser = function(req, res){
 	if(!req.body.username || !req.body.password){
 		res.status(404).json({message: "Username and password are required! "});
 	}else{
 		 var username = req.body.username,	
 		 	password = req.body.password,
-			potentialUser = { where: { username: username } };
+			potentialUser = { where: { username: username }
+		};
 
-			if user.findOne(potentialUser).then(function(user){
+			user.findOne(potentialUser).then(function(user){
 				if(!user){
 					res.status(404).json({message: 'Authenication Failed'}); 
 				}else{

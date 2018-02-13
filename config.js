@@ -9,8 +9,11 @@ config.db.user= 'root';
 config.db.password= 'Bettina96@';
 config.db.name= 'support_manager';
 
-config.db.users_tbl = 'users';
-config.db.admin_tbl = 'admin';
+var userRoles = config.userRoles = {
+    guest: 1,    // ...001
+    user: 2,     // ...010
+    admin: 4     // ...100
+};
 
 config.keys={
 	secret: '9_1vz01n#5_d+w2zf6t=96$-r_1l#jkfv5yu#bhoozp30s9lgo'

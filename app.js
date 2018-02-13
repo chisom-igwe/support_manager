@@ -1,11 +1,10 @@
 //import modules 
 const bodyParser = require('body-parser');
-const config = require('./config/config');
+const config = require('./config');
 const cors = require('cors');
 const express = require('express');
 const jwt = require('jsonwebtoken'); 
 const mysql = require('mysql');
-const passport = require('passport');
 const passport = require('passport');
 const path = require('path');
 const sequelize = require('sequelize');
@@ -26,14 +25,11 @@ connection.connect(function(err){
 });
 
 
-//get routes
-const users = require('./routes/users'); 
-const admin = require('./routes/admin'); 
-
 
 // Parse as urlencoded and json.
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Hook up the HTTP logger.
 app.use(morgan('dev'));
@@ -48,25 +44,17 @@ app.use(express.static(path.join(__dirname,'public')));
 
 // Cors Middleware 
 app.use(cors());
-
-
-//Body Parser Middleware
-app.use(bodyParser.json()); 
+ 
+ //get routes
+const users = require('./routes/users'); 
+const admin = require('./routes/admin'); 
 
 app.use('/users', users);
 app.use('/admin', admin);
 
-
-//index route 
-app.get('/', (req, res) =>{
-	// connection.getConnection(function(error, users){
-	// 	if(!!error){
-	// 		users.release(); 
-	// 		console.log('Error');
-	// 	}
-	// })
-	res.send('Invalid Endpoint');
-}); 
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../public/index.html'));
+});
 
 const port = 3000; 
 

@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const database = require('../services/database');
 const config = require('../config');
 const mysql = require('mysql'); 
-const sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 
 // User Schema 
@@ -31,7 +31,7 @@ var modelDefinition = {
 var modelOptions = {
 	instanceMethods:{
 		comparePasswords: comparePasswords
-	}
+	},
 	hooks: {
         beforeValidate: hashPassword
 	}
@@ -43,7 +43,7 @@ var userModel = database.define( 'user', modelDefinition, modelOptions);
 //Compare Passwords
 
 function comparePasswords(password, callback){
-	bcrypt.compare(password, this.password, function(erros, isMatch){
+	bcrypt.compare(password, this.password, function(error, isMatch){
 		if(error){
 			return callback(error); 
 		}
@@ -52,7 +52,7 @@ function comparePasswords(password, callback){
 }
 
 function hashPassword(user){
-	if(user.changes('password')){
+	if(user.changed('password')){
 		return bcrypt.hash(user.password, 10).then(function(password){
 			user.password = password; 
 		});

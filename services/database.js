@@ -1,9 +1,9 @@
 'use strict';
 
 const  config = require('./../config');
-const  sequelize = require('sequelize');
+const  Sequelize = require('sequelize');
 
-module.exports = new sequelize(
+module.exports = new Sequelize(
     config.db.name,
     config.db.user,
     config.db.password,
