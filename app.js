@@ -1,11 +1,15 @@
 //import modules 
-const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
+const config = require('./config/config');
 const cors = require('cors');
-const passport = require('passport');
+const express = require('express');
+const jwt = require('jsonwebtoken'); 
 const mysql = require('mysql');
-const config = require('./config/database'); 
+const passport = require('passport');
+const passport = require('passport');
+const path = require('path');
+const sequelize = require('sequelize');
+const morgan = require('morgan'); 
 
 //create application 
 const app = express(); 
@@ -24,6 +28,17 @@ connection.connect(function(err){
 //get routes
 const users = require('./routes/users'); 
 const admin = require('./routes/admin'); 
+
+
+// Parse as urlencoded and json.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Hook up the HTTP logger.
+app.use(morgan('dev'));
+
+// Hook up Passport.
+app.use(passport.initialize());
 
 
 //set static folder
