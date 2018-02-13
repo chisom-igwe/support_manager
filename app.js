@@ -10,6 +10,7 @@ const passport = require('passport');
 const path = require('path');
 const sequelize = require('sequelize');
 const morgan = require('morgan'); 
+const hookJwtStrategy = require('./services/passportStrategy');
 
 //create application 
 const app = express(); 
@@ -40,6 +41,7 @@ app.use(morgan('dev'));
 // Hook up Passport.
 app.use(passport.initialize());
 
+hookJwtStrategy(passport);
 
 //set static folder
 app.use(express.static(path.join(__dirname,'public')));

@@ -1,14 +1,13 @@
 const express = require('express'); 
 const router = express.Router(); 
 
+const config = require('../config'); 
+const allowOnly = require('../services/routesHelper').allowOnly,
+const authController = require('../controllers/authController'),
 
-router.post('/register', (req, res, next) =>{
-	res.send("REGISTER");
-});
+router.post('/register', authController.signUp);
 
-router.get('/login', (req, res, next) =>{
-	res.send("Login");
-});
+router.post('/authenticate', authController.authenticateUser);
 
 router.get('/dashboard', (req, res, next) =>{
 	res.send("dashboard");
